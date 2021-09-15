@@ -3,7 +3,6 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import InfoIcon from '@material-ui/icons/Info';
 import React, { useState, useEffect } from 'react';
-
 import axios from '../axios/axios';
 import requests from '../axios/requests';
 function Banner() {
@@ -20,13 +19,14 @@ function Banner() {
 	}, []);
 	const baseImageUrl = 'https://image.tmdb.org/t/p/original/';
 	console.log(banner);
+
 	return (
 		<header
 			style={{
 				backgroundSize: 'cover',
 				backgroundImage: `url("https://image.tmdb.org/t/p/original/${banner?.backdrop_path}")`,
 				backgroundPosition: 'center center',
-				height: '70vh',
+				height: '80vh',
 			}}
 			className="text-gray-50"
 		>
@@ -53,13 +53,7 @@ function Banner() {
 				</div>
 				<p className="info">{banner?.overview}</p>
 			</div>
-			<div
-				style={{
-					height: '7.4rem',
-					backgroundImage:
-						'linear-gradient(180deg,transparent,rgba(37,37,37,0.61),#111)',
-				}}
-			/>
+			<div className="navBar__Banner" />
 		</header>
 	);
 }

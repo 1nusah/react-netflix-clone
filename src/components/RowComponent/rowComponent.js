@@ -31,7 +31,7 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 				{React.Children.toArray(
 					movieItem.map((item) => (
 						<img
-							className="object-cover w-full h-full  transform hover:transform hover:scale-150  hover:origin-center  duration-200 "
+							className={`object-cover w-full h-full  transform hover:transform hover:scale-150  hover:origin-center  duration-200 `}
 							src={`${baseImageUrl}${
 								largeRow ? item.poster_path : item.backdrop_path
 							}`}
