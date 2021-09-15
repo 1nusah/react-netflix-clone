@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../axios/axios';
-const RowComponent = ({ title, fetchUrl }) => {
+const RowComponent = ({ title, fetchUrl, largeRow }) => {
 	const [movieItem, setMovieItem] = useState([]);
 	useEffect(() => {
 		async function getData() {
 			const req = await axios.get(fetchUrl);
-			console.log(req.data.results);
+			// console.log(req.data.results);
 			setMovieItem(req.data.results);
 		}
 		getData();
@@ -15,14 +15,13 @@ const RowComponent = ({ title, fetchUrl }) => {
 	return (
 		<div>
 			<div>
-				<p> {title} </p>
+				<p className="text-gray-50 text-2xl font-semibold"> {title} </p>
 			</div>
-			{/* <div className="flex h-48  space-x-3 overflow-auto"> */}
 			<div
-				className="py-4"
+				className="py-4 gap-3"
 				style={{
 					display: 'grid',
-					gap: '16px',
+					// gap: '16px',
 					gridTemplateColumns: 'repeat(auto-fill,minmax(160px,1fr))',
 					gridAutoFlow: 'column',
 					gridAutoColumns: 'minmax(160px,1fr',
@@ -32,8 +31,10 @@ const RowComponent = ({ title, fetchUrl }) => {
 				{React.Children.toArray(
 					movieItem.map((item) => (
 						<img
-							className="object-contain w-full h-full "
-							src={`${baseImageUrl}${item.poster_path}`}
+							className="object-cover w-full h-full  transform hover:transform hover:scale-150  hover:origin-center  duration-200 "
+							src={`${baseImageUrl}${
+								largeRow ? item.poster_path : item.backdrop_path
+							}`}
 							alt={item.name}
 						/>
 					))
