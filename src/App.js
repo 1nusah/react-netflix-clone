@@ -1,25 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import requests from './components/axios/requests';
+import RowComponent from './components/RowComponent/rowComponent';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div style={{ paddingLeft: '5%' }}>
+			<RowComponent title="Trending" fetchUrl={requests.getTrending} />
+			{/* <RowComponent title="Action" fetchUrl={requests.getAction} />
+			<RowComponent title="Adventure" fetchUrl={requests.getAdventure} />
+			<RowComponent title="Animation" fetchUrl={requests.getAnimation} />
+			<RowComponent title="Comedy" fetchUrl={requests.getComedy} />
+			<RowComponent title="Crime" fetchUrl={requests.getCrime} />
+			<RowComponent title="Documentary" fetchUrl={requests.getDocumentary} /> */}
+		</div>
+	);
 }
 
 export default App;
