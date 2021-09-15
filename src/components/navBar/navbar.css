@@ -1,0 +1,13 @@
+.navBar {
+	position: absolute;
+	height: 10vh;
+	width: 100%;
+	background-image: linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0.7) 10%,
+		rgba(0, 0, 0, 0)
+	);
+	transition: all ease-out 0.3s;
+	z-index: 3;
+	padding: 0.5rem 2rem;
+}
