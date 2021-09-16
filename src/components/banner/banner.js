@@ -17,7 +17,6 @@ function Banner() {
 		}
 		fetchData();
 	}, []);
-	const baseImageUrl = 'https://image.tmdb.org/t/p/original/';
 	console.log(banner);
 
 	return (
