@@ -6,6 +6,7 @@ import PlayCircleFilledWhiteIcon from '@material-ui/icons/PlayCircleFilledWhite'
 import AddIcon from '@material-ui/icons/Add';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
+import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from '../axios/axios';
 import { Dialog, IconButton } from '@material-ui/core';
@@ -128,21 +129,31 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 						{trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
 					</div>
 					<div
-						className="flex space-x-2 pl-2 py-4"
+						className="flex justify-between px-2 py-4"
 						style={{ backgroundColor: '#111' }}
 					>
-						<IconButton style={{ border: '1px solid #9CA3AF' }}>
-							<PlayCircleFilledWhiteIcon style={{ color: '#fff' }} />
-						</IconButton>
-						<IconButton style={{ border: '1px solid #9CA3AF' }}>
-							<AddIcon className="text-gray-400" />
-						</IconButton>
-						<IconButton style={{ border: '1px solid #9CA3AF' }}>
-							<ThumbUpAltOutlinedIcon className="text-gray-400" />
-						</IconButton>
-						<IconButton style={{ border: '1px solid #9CA3AF' }}>
-							<ThumbDownAltOutlinedIcon className="text-gray-400" />
-						</IconButton>
+						<div className="flex space-x-2  ">
+							<IconButton style={{ border: '1px solid #9CA3AF' }}>
+								<PlayCircleFilledWhiteIcon style={{ color: '#fff' }} />
+							</IconButton>
+							<IconButton style={{ border: '1px solid #9CA3AF' }}>
+								<AddIcon className="text-gray-400" />
+							</IconButton>
+							<IconButton style={{ border: '1px solid #9CA3AF' }}>
+								<ThumbUpAltOutlinedIcon className="text-gray-400" />
+							</IconButton>
+							<IconButton style={{ border: '1px solid #9CA3AF' }}>
+								<ThumbDownAltOutlinedIcon className="text-gray-400" />
+							</IconButton>
+						</div>
+						<div>
+							<IconButton
+								style={{ border: '1px solid #9CA3AF' }}
+								onClick={handlePopoverClose}
+							>
+								<ClearOutlinedIcon style={{ color: '#fff' }} />
+							</IconButton>
+						</div>
 					</div>
 				</Dialog>
 			</div>
