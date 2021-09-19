@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import YouTube from 'react-youtube';
 import movieTrailer from 'movie-trailer';
 
@@ -7,12 +7,15 @@ import AddIcon from '@material-ui/icons/Add';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
 import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
+import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from '../axios/axios';
 import { Dialog, IconButton } from '@material-ui/core';
+import { FaveMovielistContext } from '../../context/movieListContext';
 const RowComponent = ({ title, fetchUrl, largeRow }) => {
 	const [movieItem, setMovieItem] = useState([]);
 	const [trailerUrl, setTrailerUrl] = useState('');
+	const [selectedMovie, setSelectedMovie] = useState({});
 	useEffect(() => {
 		async function getData() {
 			const req = await axios.get(fetchUrl);
@@ -48,6 +51,7 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 
 	const handleClick = (movie) => {
 		setAnchorEl(true);
+		setSelectedMovie(movie);
 		console.log('movie is', movie);
 		if (trailerUrl) {
 			setTrailerUrl('');
@@ -71,6 +75,15 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 			// https://developers.google.com/youtube/player_parameters
 			autoplay: false,
 		},
+	};
+
+	const { favemovieList, addFaveMovie, removeMovie } =
+		useContext(FaveMovielistContext);
+	console.log('shit is', favemovieList);
+	console.log('ss', selectedMovie);
+
+	const handleMove = () => {
+		addFaveMovie(selectedMovie);
 	};
 	return (
 		<div>
@@ -110,7 +123,6 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 					// classes={{
 					// 	paper: classes.paper,
 					// }}
-					className="bg-transparent"
 					fullWidth
 					open={open}
 					anchorEl={anchorEl}
@@ -125,11 +137,11 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 					onClose={handlePopoverClose}
 					// disableRestoreFocus
 				>
-					<div>
+					<div style={{ backgroundColor: '#111' }}>
 						{trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
 					</div>
 					<div
-						className="flex justify-between px-2 py-4"
+						className="flex justify-between p-2"
 						style={{ backgroundColor: '#111' }}
 					>
 						<div className="flex space-x-2  ">
@@ -139,11 +151,11 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 							<IconButton style={{ border: '1px solid #9CA3AF' }}>
 								<AddIcon className="text-gray-400" />
 							</IconButton>
-							<IconButton style={{ border: '1px solid #9CA3AF' }}>
-								<ThumbUpAltOutlinedIcon className="text-gray-400" />
-							</IconButton>
-							<IconButton style={{ border: '1px solid #9CA3AF' }}>
-								<ThumbDownAltOutlinedIcon className="text-gray-400" />
+							<IconButton
+								onClick={handleMove}
+								style={{ border: '1px solid #9CA3AF' }}
+							>
+								<FavoriteOutlinedIcon className="text-gray-400" />
 							</IconButton>
 						</div>
 						<div>
@@ -153,6 +165,12 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 							>
 								<ClearOutlinedIcon style={{ color: '#fff' }} />
 							</IconButton>
+						</div>
+					</div>
+					<div style={{ backgroundColor: '#111' }} className=" p-2 ">
+						<div className=" flex space-x-1 text-green-600">
+							<p className="font-semibold">Ratings:</p>
+							<p>{selectedMovie.vote_average * 10}%</p>
 						</div>
 					</div>
 				</Dialog>
