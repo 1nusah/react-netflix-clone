@@ -4,11 +4,9 @@ import movieTrailer from 'movie-trailer';
 
 import PlayCircleFilledWhiteIcon from '@material-ui/icons/PlayCircleFilledWhite';
 import AddIcon from '@material-ui/icons/Add';
-import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
-import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
+
 import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
 import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
-import { makeStyles } from '@material-ui/core/styles';
 import axios from '../axios/axios';
 import { Dialog, IconButton } from '@material-ui/core';
 import { FaveMovielistContext } from '../../context/movieListContext';
@@ -19,7 +17,6 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 	useEffect(() => {
 		async function getData() {
 			const req = await axios.get(fetchUrl);
-			// console.log(req.data.results);
 			setMovieItem(req.data.results);
 		}
 		getData();
@@ -27,21 +24,7 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 
 	const baseImageUrl = 'https://image.tmdb.org/t/p/original/';
 
-	const useStyles = makeStyles((theme) => ({
-		popover: {
-			pointerEvents: 'none',
-		},
-		paper: {
-			padding: theme.spacing(1),
-		},
-	}));
-
-	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = React.useState(null);
-
-	const handlePopoverOpen = (event) => {
-		setAnchorEl(event.currentTarget);
-	};
 
 	const handlePopoverClose = () => {
 		setAnchorEl(null);
@@ -58,21 +41,15 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 		} else {
 			movieTrailer(movie?.original_title || '')
 				.then((url) => {
-					// console.log('url is', url);
-
 					const urlParams = new URLSearchParams(new URL(url).search);
-					// console.log('shit is ', urlParams);
 					setTrailerUrl(urlParams.get('v'));
-					// console.log('trailer', trailerUrl);
 				})
 				.catch((error) => console.error(error));
 		}
 	};
 	const opts = {
-		// height: '100%',
 		width: '100%',
 		playerVars: {
-			// https://developers.google.com/youtube/player_parameters
 			autoplay: false,
 		},
 	};
@@ -85,16 +62,17 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 	const handleMove = () => {
 		addFaveMovie(selectedMovie);
 	};
+
 	return (
 		<div>
 			<div>
 				<p className="text-gray-50 text-2xl font-semibold"> {title} </p>
 			</div>
 			<div
-				className="py-4 gap-3"
+				className="py-4"
 				style={{
 					display: 'grid',
-					// gap: '16px',
+					gap: '2%',
 					gridTemplateColumns: 'repeat(auto-fill,minmax(160px,1fr))',
 					gridAutoFlow: 'column',
 					gridAutoColumns: 'minmax(160px,1fr',
@@ -119,10 +97,6 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 				)}
 				<Dialog
 					id="mouse-over-popover"
-					// className={classes.popover}
-					// classes={{
-					// 	paper: classes.paper,
-					// }}
 					fullWidth
 					open={open}
 					anchorEl={anchorEl}
@@ -155,7 +129,7 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 								onClick={handleMove}
 								style={{ border: '1px solid #9CA3AF' }}
 							>
-								<FavoriteOutlinedIcon className="text-gray-400" />
+								<FavoriteOutlinedIcon className={'text-gray-400'} />
 							</IconButton>
 						</div>
 						<div>
