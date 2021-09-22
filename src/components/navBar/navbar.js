@@ -9,7 +9,7 @@ const Navbar = () => {
 		// <div className="navBar">
 		<div className={`flex justify-between  ${navBar}`}>
 			<div className="flex space-x-3 justify-center">
-				<div className="w-20 h-10 bg-red-500">
+				<div className="w-20 h-10 ">
 					<img src={Netflix} alt="" className="object-contain" />
 				</div>
 
