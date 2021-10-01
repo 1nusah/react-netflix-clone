@@ -57,13 +57,14 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 
 	const { favemovieList, addFaveMovie, removeMovie } =
 		useContext(FaveMovielistContext);
-	console.log('shit is', favemovieList);
-	console.log('ss', selectedMovie);
 
 	const handleMove = () => {
 		addFaveMovie(selectedMovie);
 	};
 
+	const removeFaveItem = (id) => removeMovie(id);
+
+	const index = favemovieList.findIndex((item) => selectedMovie.id === item.id);
 	return (
 		<div>
 			<div>
@@ -127,12 +128,21 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 							<IconButton style={{ border: '1px solid #9CA3AF' }}>
 								<AddIcon className="text-gray-400" />
 							</IconButton>
-							<IconButton
-								onClick={handleMove}
-								style={{ border: '1px solid #9CA3AF' }}
-							>
-								<FavoriteOutlinedIcon className={'text-gray-400'} />
-							</IconButton>
+							{index === -1 ? (
+								<IconButton
+									onClick={handleMove}
+									style={{ border: '1px solid #9CA3AF' }}
+								>
+									<FavoriteOutlinedIcon className={'text-gray-400'} />
+								</IconButton>
+							) : (
+								<IconButton
+									onClick={() => removeFaveItem(selectedMovie.id)}
+									style={{ border: '1px solid #9CA3AF' }}
+								>
+									<FavoriteOutlinedIcon className={'text-red-400'} />
+								</IconButton>
+							)}
 						</div>
 						<div>
 							<IconButton
