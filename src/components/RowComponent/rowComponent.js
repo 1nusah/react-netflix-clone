@@ -4,12 +4,13 @@ import movieTrailer from 'movie-trailer';
 
 import PlayCircleFilledWhiteIcon from '@material-ui/icons/PlayCircleFilledWhite';
 import AddIcon from '@material-ui/icons/Add';
-
 import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
 import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
-import axios from '../axios/axios';
 import { Dialog, IconButton } from '@material-ui/core';
+
+import axios from '../axios/axios';
 import { FaveMovielistContext } from '../../context/movieListContext';
+
 const RowComponent = ({ title, fetchUrl, largeRow }) => {
 	const [movieItem, setMovieItem] = useState([]);
 	const [trailerUrl, setTrailerUrl] = useState('');
@@ -68,6 +69,7 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 			<div>
 				<p className="text-gray-50 text-2xl font-semibold"> {title} </p>
 			</div>
+
 			<div
 				className="py-4"
 				style={{
