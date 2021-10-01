@@ -4,12 +4,13 @@ import movieTrailer from 'movie-trailer';
 
 import PlayCircleFilledWhiteIcon from '@material-ui/icons/PlayCircleFilledWhite';
 import AddIcon from '@material-ui/icons/Add';
-
 import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
 import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
-import axios from '../axios/axios';
 import { Dialog, IconButton } from '@material-ui/core';
+
+import axios from '../axios/axios';
 import { FaveMovielistContext } from '../../context/movieListContext';
+
 const RowComponent = ({ title, fetchUrl, largeRow }) => {
 	const [movieItem, setMovieItem] = useState([]);
 	const [trailerUrl, setTrailerUrl] = useState('');
@@ -56,18 +57,20 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 
 	const { favemovieList, addFaveMovie, removeMovie } =
 		useContext(FaveMovielistContext);
-	console.log('shit is', favemovieList);
-	console.log('ss', selectedMovie);
 
 	const handleMove = () => {
 		addFaveMovie(selectedMovie);
 	};
 
+	const removeFaveItem = (id) => removeMovie(id);
+
+	const index = favemovieList.findIndex((item) => selectedMovie.id === item.id);
 	return (
 		<div>
 			<div>
 				<p className="text-gray-50 text-2xl font-semibold"> {title} </p>
 			</div>
+
 			<div
 				className="py-4"
 				style={{
@@ -125,12 +128,21 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 							<IconButton style={{ border: '1px solid #9CA3AF' }}>
 								<AddIcon className="text-gray-400" />
 							</IconButton>
-							<IconButton
-								onClick={handleMove}
-								style={{ border: '1px solid #9CA3AF' }}
-							>
-								<FavoriteOutlinedIcon className={'text-gray-400'} />
-							</IconButton>
+							{index === -1 ? (
+								<IconButton
+									onClick={handleMove}
+									style={{ border: '1px solid #9CA3AF' }}
+								>
+									<FavoriteOutlinedIcon className={'text-gray-400'} />
+								</IconButton>
+							) : (
+								<IconButton
+									onClick={() => removeFaveItem(selectedMovie.id)}
+									style={{ border: '1px solid #9CA3AF' }}
+								>
+									<FavoriteOutlinedIcon className={'text-red-400'} />
+								</IconButton>
+							)}
 						</div>
 						<div>
 							<IconButton
