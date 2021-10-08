@@ -17,7 +17,7 @@ const Navbar = () => {
 			</div>
 			<div className="w-16 h-16 pt-2">
 				<Link to="/favorites">
-					<Button style={{ color: '#fff' }}>Faves</Button>
+					<Button style={{ color: '#E50914', fontWeight: 500 }}>Faves</Button>
 				</Link>
 			</div>
 		</div>
