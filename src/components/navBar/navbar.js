@@ -13,18 +13,12 @@ const Navbar = () => {
 					<img src={Netflix} alt="" className="object-contain" />
 				</div>
 
-				<div className=" w-20 h-10 ">
-					<Link to="/favorites">
-						<Button>Faves</Button>
-					</Link>
-				</div>
+				{/* <div className=" w-20 h-10 "></div> */}
 			</div>
 			<div className="w-16 h-16 pt-2">
-				<Avatar
-					src="https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=755&q=80"
-					alt="profile"
-					className="object-contain"
-				/>
+				<Link to="/favorites">
+					<Button style={{ color: '#fff' }}>Faves</Button>
+				</Link>
 			</div>
 		</div>
 		// </div>
