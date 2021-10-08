@@ -3,6 +3,7 @@ import './App.css';
 import Banner from './components/banner/banner';
 import Navbar from './components/navBar/navbar';
 import FaveMovieListProvider from './context/movieListContext';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import {
 	BrowserRouter as Router,
@@ -13,9 +14,22 @@ import {
 import FaveItemsPage from './pages/faveItemsPage/FaveItemsPage';
 import LandingPage from './pages/LandingPage/landingPage';
 import SearchPage from './pages/searchPage';
+
+const theme = createTheme({
+	palette: {
+		primary: {
+			// Purple and green play nicely together.
+			main: '#E50914',
+		},
+		secondary: {
+			// This is green.A700 as hex.
+			main: '#11cb5f',
+		},
+	},
+});
 function App() {
 	return (
-		<>
+		<ThemeProvider theme={theme}>
 			<Router>
 				<Switch>
 					<FaveMovieListProvider>
@@ -34,7 +48,7 @@ function App() {
 					</FaveMovieListProvider>
 				</Switch>
 			</Router>
-		</>
+		</ThemeProvider>
 	);
 }
 
