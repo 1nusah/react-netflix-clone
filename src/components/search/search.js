@@ -1,42 +1,73 @@
-import React from 'react';
-import {
-	TextField,
-	InputAdornment,
-	FormControl,
-	InputLabel,
-	Grid,
-} from '@material-ui/core';
+import React, { useState } from 'react';
+import { Grid, TextField } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 
-const SearchComponent = () => {
-	return (
-		<div className="flex flex-col items-center justify-center ">
-			<div className="text-gray-300">search bar in this bitch</div>
-			{/* <FormControl>
-				<InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
-				<TextField
-					label="Search for any movie"
-					id="standard-start-adornment"
-					classes={{ root: 'text-[#E50914]' }}
-					InputProps={{
-						startAdornment: (
-							<InputAdornment position="start">
-								<SearchIcon />
-							</InputAdornment>
-						),
-					}}
-				/>
-			</FormControl> */}
+const useStyles = makeStyles({
+	underline: {
+		'&&&:before': {
+			borderBottom: '#E50914',
+		},
+		'&&:after': {
+			borderBottom: '#E50914',
+		},
+	},
+});
 
-			<Grid container spacing={1} alignItems="flex-end">
-				<Grid item>
-					<SearchIcon />
-				</Grid>
-				<Grid item>
-					<TextField id="input-with-icon-grid" label="With a grid" />
-				</Grid>
-			</Grid>
-		</div>
+const SearchComponent = () => {
+	const [queryTerm, setQueryTerm] = React.useState('');
+	const classes = useStyles();
+	const handleQueryTerm = (e) => {
+		setQueryTerm(e.target.value);
+	};
+	return (
+		<>
+			{queryTerm.length > 0 ? (
+				<div className="w-full h-screen py-4  mx-auto">
+					<div className=" w-4/5  py-3 flex justify-center items-center align-middle mx-auto">
+						<div className="w-full mx-auto flex space-x-2 ">
+							<SearchIcon color="primary" />
+							<form className="w-full">
+								<TextField
+									autoFocus
+									onChange={handleQueryTerm}
+									value={queryTerm}
+									placeholder="Search for a movie"
+									fullWidth
+									disableUnderline
+									color="primary"
+									className="focus:flex focus:justify-start focus:items-start focus:bg-red-400"
+								/>
+							</form>
+						</div>
+					</div>
+
+					<div className="w-4/5 mx-auto p-4 pt-6">
+						<p className="text-xl text-gray-50">
+							Search Results for {queryTerm} :
+						</p>
+					</div>
+				</div>
+			) : (
+				<div className="w-full h-screen py-4  flex justify-center items-center align-middle mx-auto">
+					<div className="flex w-1/2 space-x-1">
+						<SearchIcon color="primary" />
+						<form className="w-full">
+							<TextField
+								autoFocus
+								onChange={handleQueryTerm}
+								value={queryTerm}
+								placeholder="Search for a movie"
+								fullWidth
+								disableUnderline
+								color="primary"
+								className="focus:flex focus:justify-start focus:items-start focus:bg-red-400"
+							/>
+						</form>
+					</div>
+				</div>
+			)}
+		</>
 	);
 };
 
