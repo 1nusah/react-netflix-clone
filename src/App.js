@@ -3,6 +3,7 @@ import './App.css';
 import Banner from './components/banner/banner';
 import Navbar from './components/navBar/navbar';
 import FaveMovieListProvider from './context/movieListContext';
+
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -11,6 +12,7 @@ import {
 } from 'react-router-dom';
 import FaveItemsPage from './pages/faveItemsPage/FaveItemsPage';
 import LandingPage from './pages/LandingPage/landingPage';
+import SearchPage from './pages/searchPage';
 function App() {
 	return (
 		<>
@@ -23,10 +25,13 @@ function App() {
 							<Banner />
 							<LandingPage />
 						</Route>
+						<Route path="/movie/:id" exact>
+							<MovieView />
+						</Route>
+						<Route path="/search" exact>
+							<SearchPage />
+						</Route>
 					</FaveMovieListProvider>
-					<Route path="/movie/:id" exact>
-						<MovieView />
-					</Route>
 				</Switch>
 			</Router>
 		</>
