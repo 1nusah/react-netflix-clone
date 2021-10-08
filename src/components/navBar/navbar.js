@@ -1,7 +1,8 @@
 import React from 'react';
 import './navbar.css';
 import Netflix from '../../assets/netflix_icon.svg';
-import { Avatar, Button } from '@material-ui/core';
+import { Avatar, Button, IconButton } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 import { Link } from 'react-router-dom';
 const Navbar = () => {
 	const navBar = 'navBar';
@@ -12,19 +13,22 @@ const Navbar = () => {
 				<div className="w-20 h-10 ">
 					<img src={Netflix} alt="" className="object-contain" />
 				</div>
-
-				<div className=" w-20 h-10 ">
-					<Link to="/favorites">
-						<Button>Faves</Button>
-					</Link>
-				</div>
 			</div>
-			<div className="w-16 h-16 pt-2">
-				<Avatar
-					src="https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=755&q=80"
-					alt="profile"
-					className="object-contain"
-				/>
+			<div className="flex justify-center items-center   ">
+				<Link to="/search">
+					<IconButton disableFocusRipple disableRipple>
+						<SearchIcon style={{ color: '#E50914' }} />
+					</IconButton>
+				</Link>
+				<Link to="/favorites">
+					<Button
+						disableFocusRipple
+						disableRipple
+						style={{ color: '#E50914', fontSize: 13 }}
+					>
+						Faves
+					</Button>
+				</Link>
 			</div>
 		</div>
 		// </div>

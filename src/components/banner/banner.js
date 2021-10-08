@@ -5,6 +5,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import React, { useState, useEffect } from 'react';
 import axios from '../axios/axios';
 import requests from '../axios/requests';
+import { useHistory, useParams } from 'react-router-dom';
 function Banner() {
 	const [banner, setBanner] = useState([]);
 	useEffect(() => {
@@ -17,8 +18,9 @@ function Banner() {
 		}
 		fetchData();
 	}, []);
-	console.log(banner);
-
+	console.log('banner', banner);
+	const history = useHistory();
+	const movie = 'movie';
 	return (
 		<header
 			style={{
@@ -45,11 +47,14 @@ function Banner() {
 						variant="contained"
 						style={{ textTransform: 'none', background: '#9CA3AF' }}
 						startIcon={<InfoIcon />}
+						onClick={() => {
+							history.push(`/${movie}/${banner.id}`, banner);
+						}}
 					>
 						More Info
 					</Button>
 				</div>
-				<p className="info">{banner?.overview}</p>
+				<p className="info bg-black bg-opacity-30 p-2">{banner?.overview}</p>
 			</div>
 			<div className="navBar__Banner" />
 		</header>
