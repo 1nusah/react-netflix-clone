@@ -14,6 +14,8 @@ import axios from '../axios/axios';
 import { FaveMovielistContext } from '../../context/movieListContext';
 import { FindFaveItem } from '../../utils/findFaveItem';
 
+import Popover from '../popover';
+
 const RowComponent = ({ title, fetchUrl, largeRow }) => {
 	const [movieItem, setMovieItem] = useState([]);
 	const [trailerUrl, setTrailerUrl] = useState('');
@@ -102,73 +104,13 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 						/>
 					))
 				)}
-				<Dialog
-					id="mouse-over-popover"
-					fullWidth
+
+				<Popover
 					open={open}
-					anchorEl={anchorEl}
-					anchorOrigin={{
-						vertical: 'bottom',
-						horizontal: 'center',
-					}}
-					transformOrigin={{
-						vertical: 'top',
-						horizontal: 'center',
-					}}
-					onClose={handlePopoverClose}
-					// disableRestoreFocus
-				>
-					<div style={{ backgroundColor: '#111' }}>
-						{trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
-					</div>
-					<div
-						className="flex justify-between p-2"
-						style={{ backgroundColor: '#111' }}
-					>
-						<div className="flex space-x-2  ">
-							<IconButton style={{ border: '1px solid #9CA3AF' }}>
-								<PlayCircleFilledWhiteIcon style={{ color: '#fff' }} />
-							</IconButton>
-							<IconButton
-								onClick={() => {
-									history.push(`/movie/${selectedMovie.id}`, selectedMovie);
-								}}
-								style={{ border: '1px solid #9CA3AF' }}
-							>
-								<InfoOutlinedIcon className="text-gray-400" />
-							</IconButton>
-							{index === -1 ? (
-								<IconButton
-									onClick={handleMove}
-									style={{ border: '1px solid #9CA3AF' }}
-								>
-									<FavoriteOutlinedIcon className={'text-gray-400'} />
-								</IconButton>
-							) : (
-								<IconButton
-									onClick={() => removeFaveItem(selectedMovie.id)}
-									style={{ border: '1px solid #9CA3AF' }}
-								>
-									<FavoriteOutlinedIcon className={'text-red-400'} />
-								</IconButton>
-							)}
-						</div>
-						<div>
-							<IconButton
-								style={{ border: '1px solid #9CA3AF' }}
-								onClick={handlePopoverClose}
-							>
-								<ClearOutlinedIcon style={{ color: '#fff' }} />
-							</IconButton>
-						</div>
-					</div>
-					<div style={{ backgroundColor: '#111' }} className=" p-2 ">
-						<div className=" flex space-x-1 text-green-600">
-							<p className="font-semibold">Ratings:</p>
-							<p>{selectedMovie.vote_average * 10}%</p>
-						</div>
-					</div>
-				</Dialog>
+					selectedMovie={selectedMovie}
+					trailerUrl={trailerUrl}
+					handlePopoverClose={handlePopoverClose}
+				/>
 			</div>
 		</div>
 	);
