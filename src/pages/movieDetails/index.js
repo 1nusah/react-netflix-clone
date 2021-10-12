@@ -33,7 +33,6 @@ const MovieView = () => {
 	const open = Boolean(anchorEl);
 	const openPopOver = () => {
 		setAnchorEl(true);
-		// setSelectedMovie(location.state);
 		console.log('movie is', location.state);
 		if (trailerUrl) {
 			setTrailerUrl('');
@@ -99,14 +98,14 @@ const MovieView = () => {
 
 							{index === -1 ? (
 								<IconButton
-									// onClick={handleMove}
+									onClick={() => addFaveMovie(location.state)}
 									style={{ border: '1px solid #9CA3AF' }}
 								>
 									<FavoriteOutlinedIcon className={'text-gray-400'} />
 								</IconButton>
 							) : (
 								<IconButton
-									// onClick={() => removeFaveItem(selectedMovie.id)}
+									onClick={() => removeMovie(location.state.id)}
 									style={{ border: '1px solid #9CA3AF' }}
 								>
 									<FavoriteOutlinedIcon className={'text-red-400'} />
