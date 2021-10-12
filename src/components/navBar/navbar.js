@@ -1,7 +1,7 @@
 import React from 'react';
 import './navbar.css';
 import Netflix from '../../assets/netflix_icon.svg';
-import { Avatar, Button, IconButton } from '@material-ui/core';
+import { Button, IconButton } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link } from 'react-router-dom';
 const Navbar = () => {
