@@ -21,6 +21,7 @@ function Banner() {
 	console.log('banner', banner);
 	const history = useHistory();
 	const movie = 'movie';
+
 	return (
 		<header
 			style={{

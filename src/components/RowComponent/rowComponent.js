@@ -10,6 +10,7 @@ import { Dialog, IconButton } from '@material-ui/core';
 
 import axios from '../axios/axios';
 import { FaveMovielistContext } from '../../context/movieListContext';
+import { FindFaveItem } from '../../utils/findFaveItem';
 
 const RowComponent = ({ title, fetchUrl, largeRow }) => {
 	const [movieItem, setMovieItem] = useState([]);
