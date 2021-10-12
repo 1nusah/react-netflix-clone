@@ -14,7 +14,7 @@ import {
 import FaveItemsPage from './pages/faveItemsPage/FaveItemsPage';
 import LandingPage from './pages/LandingPage/landingPage';
 import SearchPage from './pages/searchPage';
-
+import MovieView from './pages/movieDetails';
 const theme = createTheme({
 	palette: {
 		primary: {
@@ -53,9 +53,3 @@ function App() {
 }
 
 export default App;
-
-const MovieView = () => {
-	const { banner } = useParams();
-	console.log('params', banner);
-	return <div className="text-red-500 text-3xl">hi</div>;
-};
