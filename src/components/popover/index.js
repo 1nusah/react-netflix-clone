@@ -13,25 +13,15 @@ import { useHistory } from 'react-router-dom';
 
 const Popover = ({
 	selectedMovie,
-	movieItem,
+	hideButtons,
 	trailerUrl,
 	open,
 	handlePopoverClose,
 }) => {
-	// const [movieItem, setMovieItem] = useState([]);
-	// const [trailerUrl, setTrailerUrl] = useState('');
-	// const [selectedMovie, setSelectedMovie] = useState({});
-
 	const { favemovieList, addFaveMovie, removeMovie } =
 		useContext(FaveMovielistContext);
 
 	const [anchorEl, setAnchorEl] = React.useState(null);
-
-	// const handlePopoverClose = () => {
-	// 	setAnchorEl(null);
-	// };
-
-	// const open = Boolean(anchorEl);
 
 	const handleMove = () => {
 		addFaveMovie(selectedMovie);
@@ -67,22 +57,27 @@ const Popover = ({
 			<div style={{ backgroundColor: '#111' }}>
 				{trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
 			</div>
+
 			<div
 				className="flex justify-between p-2"
 				style={{ backgroundColor: '#111' }}
 			>
 				<div className="flex space-x-2  ">
-					<IconButton style={{ border: '1px solid #9CA3AF' }}>
-						<PlayCircleFilledWhiteIcon style={{ color: '#fff' }} />
-					</IconButton>
-					<IconButton
-						onClick={() => {
-							history.push(`/movie/${selectedMovie.id}`, selectedMovie);
-						}}
-						style={{ border: '1px solid #9CA3AF' }}
-					>
-						<InfoOutlinedIcon className="text-gray-400" />
-					</IconButton>
+					{!hideButtons && (
+						<>
+							<IconButton style={{ border: '1px solid #9CA3AF' }}>
+								<PlayCircleFilledWhiteIcon style={{ color: '#fff' }} />
+							</IconButton>
+							<IconButton
+								onClick={() => {
+									history.push(`/movie/${selectedMovie.id}`, selectedMovie);
+								}}
+								style={{ border: '1px solid #9CA3AF' }}
+							>
+								<InfoOutlinedIcon className="text-gray-400" />
+							</IconButton>
+						</>
+					)}
 					{index === -1 ? (
 						<IconButton
 							onClick={handleMove}
@@ -108,6 +103,7 @@ const Popover = ({
 					</IconButton>
 				</div>
 			</div>
+
 			<div style={{ backgroundColor: '#111' }} className=" p-2 ">
 				<div className=" flex space-x-1 text-green-600">
 					<p className="font-semibold">Ratings:</p>

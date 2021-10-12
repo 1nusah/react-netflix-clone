@@ -8,18 +8,44 @@ import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
 import { Dialog, IconButton } from '@material-ui/core';
 import { FaveMovielistContext } from '../../context/movieListContext';
 import { FindFaveItem } from '../../utils/findFaveItem';
+import movieTrailer from 'movie-trailer';
+
+import Popover from '../../components/popover';
 const MovieView = () => {
+	const [trailerUrl, setTrailerUrl] = useState('');
+
 	const banner = useParams();
 	const location = useLocation();
 
-	console.log('params', banner);
-	console.log('locaiton sit', location.state);
 	const { favemovieList, addFaveMovie, removeMovie } =
 		useContext(FaveMovielistContext);
 	console.log('hghghash', FindFaveItem(favemovieList));
 	const index = favemovieList.findIndex(
 		(item) => location.state?.id === item.id
 	);
+
+	const [anchorEl, setAnchorEl] = React.useState(null);
+
+	const handlePopoverClose = () => {
+		setAnchorEl(null);
+	};
+
+	const open = Boolean(anchorEl);
+	const openPopOver = () => {
+		setAnchorEl(true);
+		// setSelectedMovie(location.state);
+		console.log('movie is', location.state);
+		if (trailerUrl) {
+			setTrailerUrl('');
+		} else {
+			movieTrailer(location.state?.original_title || '')
+				.then((url) => {
+					const urlParams = new URLSearchParams(new URL(url).search);
+					setTrailerUrl(urlParams.get('v'));
+				})
+				.catch((error) => console.error(error));
+		}
+	};
 	return (
 		<div
 			style={{
@@ -64,7 +90,10 @@ const MovieView = () => {
 
 					<div className="flex justify-between p-2">
 						<div className="flex space-x-2    ">
-							<IconButton style={{ border: '1px solid #9CA3AF' }}>
+							<IconButton
+								style={{ border: '1px solid #9CA3AF' }}
+								onClick={openPopOver}
+							>
 								<PlayCircleFilledWhiteIcon style={{ color: '#fff' }} />
 							</IconButton>
 
@@ -87,6 +116,13 @@ const MovieView = () => {
 					</div>
 				</div>
 			</div>
+			<Popover
+				open={open}
+				selectedMovie={location.state}
+				trailerUrl={trailerUrl}
+				handlePopoverClose={handlePopoverClose}
+				hideButtons
+			/>
 		</div>
 	);
 };
