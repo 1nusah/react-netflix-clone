@@ -1,14 +1,10 @@
 import React, { useContext, useState } from 'react';
-import YouTube from 'react-youtube';
 
 import PlayCircleFilledWhiteIcon from '@material-ui/icons/PlayCircleFilledWhite';
-import AddIcon from '@material-ui/icons/Add';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 
-import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
-import { Dialog } from '@material-ui/core';
 import { FaveMovielistContext } from '../../context/movieListContext';
 import EmptyList from '../../assets/emptyFaveList.svg';
 import movieTrailer from 'movie-trailer';
@@ -16,7 +12,6 @@ import Popover from '../../components/popover';
 import { useHistory } from 'react-router';
 
 export default function FaveItemsPage() {
-	const [movieItem, setMovieItem] = useState([]);
 	const [trailerUrl, setTrailerUrl] = useState('');
 	const [selectedMovie, setSelectedMovie] = useState({});
 
@@ -45,12 +40,6 @@ export default function FaveItemsPage() {
 				})
 				.catch((error) => console.error(error));
 		}
-	};
-	const opts = {
-		width: '100%',
-		playerVars: {
-			autoplay: false,
-		},
 	};
 
 	console.table('fave movie list ', favemovieList);
