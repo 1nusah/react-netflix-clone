@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 
 import PlayCircleFilledWhiteIcon from '@material-ui/icons/PlayCircleFilledWhite';
-import AddIcon from '@material-ui/icons/Add';
 import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
 import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import { Dialog, IconButton } from '@material-ui/core';
 import { FaveMovielistContext } from '../../context/movieListContext';
 import YouTube from 'react-youtube';
-import movieTrailer from 'movie-trailer';
 import { useHistory } from 'react-router-dom';
 
 const Popover = ({

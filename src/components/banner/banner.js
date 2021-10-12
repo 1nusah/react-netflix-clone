@@ -1,11 +1,10 @@
 import { Button } from '@material-ui/core';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import InfoIcon from '@material-ui/icons/Info';
 import React, { useState, useEffect } from 'react';
 import axios from '../axios/axios';
 import requests from '../axios/requests';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 function Banner() {
 	const [banner, setBanner] = useState([]);
 	useEffect(() => {

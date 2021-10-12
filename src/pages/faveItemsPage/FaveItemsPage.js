@@ -5,12 +5,15 @@ import PlayCircleFilledWhiteIcon from '@material-ui/icons/PlayCircleFilledWhite'
 import AddIcon from '@material-ui/icons/Add';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 
 import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
 import { Dialog } from '@material-ui/core';
 import { FaveMovielistContext } from '../../context/movieListContext';
 import EmptyList from '../../assets/emptyFaveList.svg';
 import movieTrailer from 'movie-trailer';
+import Popover from '../../components/popover';
+import { useHistory } from 'react-router';
 
 export default function FaveItemsPage() {
 	const [movieItem, setMovieItem] = useState([]);
@@ -52,6 +55,7 @@ export default function FaveItemsPage() {
 
 	console.table('fave movie list ', favemovieList);
 	const removeFaveItem = (id) => removeMovie(id);
+	const history = useHistory();
 	return (
 		<div className="pl-2 lg:pl-6  bg-[#141414] text-gray-50">
 			{favemovieList.length > 0 && (
@@ -89,8 +93,13 @@ export default function FaveItemsPage() {
 									>
 										<PlayCircleFilledWhiteIcon style={{ color: '#fff' }} />
 									</IconButton>
-									<IconButton style={{ border: '1px solid #9CA3AF' }}>
-										<AddIcon className="text-gray-400" />
+									<IconButton
+										onClick={() => {
+											history.push(`/movie/${item.id}`, item);
+										}}
+										style={{ border: '1px solid #9CA3AF' }}
+									>
+										<InfoOutlinedIcon className="text-gray-400" />
 									</IconButton>
 									<IconButton
 										onClick={() => removeFaveItem(item.id)}
@@ -114,66 +123,18 @@ export default function FaveItemsPage() {
 						alt="no empty"
 					/>
 					<p className="text-xl pt-4 flex justify-center items-center">
-						{' '}
 						It's so empty in here...
 					</p>
 				</div>
 			)}
 
-			<Dialog
-				id="mouse-over-popover"
-				fullWidth
+			<Popover
 				open={open}
-				anchorEl={anchorEl}
-				anchorOrigin={{
-					vertical: 'bottom',
-					horizontal: 'center',
-				}}
-				transformOrigin={{
-					vertical: 'top',
-					horizontal: 'center',
-				}}
-				onClose={handlePopoverClose}
-				// disableRestoreFocus
-			>
-				<div style={{ backgroundColor: '#111' }}>
-					{trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
-				</div>
-				<div
-					className="flex justify-between p-2"
-					style={{ backgroundColor: '#111' }}
-				>
-					<div className="flex space-x-2  ">
-						<IconButton style={{ border: '1px solid #9CA3AF' }}>
-							<PlayCircleFilledWhiteIcon style={{ color: '#fff' }} />
-						</IconButton>
-						<IconButton style={{ border: '1px solid #9CA3AF' }}>
-							<AddIcon className="text-gray-400" />
-						</IconButton>
-
-						<IconButton
-							onClick={() => removeFaveItem(selectedMovie.id)}
-							style={{ border: '1px solid #9CA3AF' }}
-						>
-							<FavoriteOutlinedIcon className={'text-red-400'} />
-						</IconButton>
-					</div>
-					<div>
-						<IconButton
-							style={{ border: '1px solid #9CA3AF' }}
-							onClick={handlePopoverClose}
-						>
-							<ClearOutlinedIcon style={{ color: '#fff' }} />
-						</IconButton>
-					</div>
-				</div>
-				<div style={{ backgroundColor: '#111' }} className=" p-2 ">
-					<div className=" flex space-x-1 text-green-600">
-						<p className="font-semibold">Ratings:</p>
-						<p>{selectedMovie.vote_average * 10}%</p>
-					</div>
-				</div>
-			</Dialog>
+				selectedMovie={selectedMovie}
+				trailerUrl={trailerUrl}
+				handlePopoverClose={handlePopoverClose}
+				hideButtons
+			/>
 		</div>
 	);
 }

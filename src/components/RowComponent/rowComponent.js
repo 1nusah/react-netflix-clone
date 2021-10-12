@@ -1,18 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
-import YouTube from 'react-youtube';
 import movieTrailer from 'movie-trailer';
-import { useHistory } from 'react-router-dom';
-
-import PlayCircleFilledWhiteIcon from '@material-ui/icons/PlayCircleFilledWhite';
-import AddIcon from '@material-ui/icons/Add';
-import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
-import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import { Dialog, IconButton } from '@material-ui/core';
 
 import axios from '../axios/axios';
 import { FaveMovielistContext } from '../../context/movieListContext';
-import { FindFaveItem } from '../../utils/findFaveItem';
 
 import Popover from '../popover';
 
@@ -53,24 +43,10 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 				.catch((error) => console.error(error));
 		}
 	};
-	const opts = {
-		width: '100%',
-		playerVars: {
-			autoplay: false,
-		},
-	};
 
 	const { favemovieList, addFaveMovie, removeMovie } =
 		useContext(FaveMovielistContext);
 
-	const handleMove = () => {
-		addFaveMovie(selectedMovie);
-	};
-
-	const removeFaveItem = (id) => removeMovie(id);
-
-	const index = favemovieList.findIndex((item) => selectedMovie.id === item.id);
-	const history = useHistory();
 	return (
 		<div>
 			<div>
