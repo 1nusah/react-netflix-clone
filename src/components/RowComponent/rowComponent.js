@@ -48,7 +48,7 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 		useContext(FaveMovielistContext);
 
 	return (
-		<div>
+		<div className="z-50">
 			<div>
 				<p className="text-gray-50 text-2xl font-semibold"> {title} </p>
 			</div>

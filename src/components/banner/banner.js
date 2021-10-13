@@ -27,7 +27,7 @@ function Banner() {
 				backgroundSize: 'cover',
 				backgroundImage: `url("https://image.tmdb.org/t/p/original/${banner?.backdrop_path}")`,
 				backgroundPosition: 'center center',
-				height: '80vh',
+				height: '90vh',
 			}}
 			className="text-gray-50"
 		>
@@ -56,7 +56,7 @@ function Banner() {
 				</div>
 				<p className="info bg-black bg-opacity-30 p-2">{banner?.overview}</p>
 			</div>
-			<div className="navBar__Banner" />
+			<div className="bg-black bg-opacity-30 " />
 		</header>
 	);
 }
