@@ -45,10 +45,20 @@ const SearchComponent = () => {
 							<SearchIcon color="primary" />
 							<form className="w-full">
 								<TextField
+									InputProps={{
+										style: {
+											color: '#E50914',
+										},
+									}}
 									autoFocus
 									onChange={handleQueryTerm}
 									value={queryTerm}
-									placeholder="Search for a movie"
+									label="Search for a movie"
+									InputLabelProps={{
+										style: {
+											color: '#E50914',
+										},
+									}}
 									fullWidth
 									disableUnderline
 									color="primary"
