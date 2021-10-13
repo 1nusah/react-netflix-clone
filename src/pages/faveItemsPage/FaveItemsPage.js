@@ -59,7 +59,7 @@ export default function FaveItemsPage() {
 							<div
 								style={{
 									height: '40vh',
-									backgroundColor: '#f00',
+									// backgroundColor: '#f00',
 								}}
 							>
 								<img

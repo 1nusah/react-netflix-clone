@@ -65,7 +65,7 @@ const MovieView = () => {
 						className="rounded-md"
 					/>
 				</div>
-				<div className="w-3/5 my-auto bg-black bg-opacity-20 px-2">
+				<div className="w-3/5 my-auto bg-black bg-opacity-30 px-2">
 					<p className="text-white text-2xl">
 						{location.state?.original_title}
 					</p>
