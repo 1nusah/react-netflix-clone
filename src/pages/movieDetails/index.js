@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import Navbar from '../../components/navBar/navbar';
 import PlayCircleFilledWhiteIcon from '@material-ui/icons/PlayCircleFilledWhite';
-import AddIcon from '@material-ui/icons/Add';
-import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
+
 import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
-import { Dialog, IconButton } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import { FaveMovielistContext } from '../../context/movieListContext';
 import { FindFaveItem } from '../../utils/findFaveItem';
 import movieTrailer from 'movie-trailer';
@@ -14,7 +13,6 @@ import Popover from '../../components/popover';
 const MovieView = () => {
 	const [trailerUrl, setTrailerUrl] = useState('');
 
-	const banner = useParams();
 	const location = useLocation();
 
 	const { favemovieList, addFaveMovie, removeMovie } =
