@@ -45,10 +45,20 @@ const SearchComponent = () => {
 							<SearchIcon color="primary" />
 							<form className="w-full">
 								<TextField
+									InputProps={{
+										style: {
+											color: '#E50914',
+										},
+									}}
 									autoFocus
 									onChange={handleQueryTerm}
 									value={queryTerm}
-									placeholder="Search for a movie"
+									label="Search for a movie"
+									InputLabelProps={{
+										style: {
+											color: '#E50914',
+										},
+									}}
 									fullWidth
 									disableUnderline
 									color="primary"
@@ -63,7 +73,16 @@ const SearchComponent = () => {
 							Search Results for {queryTerm} :
 						</p>
 
-						<div className="grid grid-cols-5  gap-2 ">
+						<div
+							style={{
+								display: 'grid',
+								gap: '2%',
+								gridTemplateColumns: 'repeat(auto-fill,minmax(160px,1fr))',
+								gridAutoFlow: 'row',
+								gridAutoColumns: 'minmax(160px,1fr',
+								// overflowX: 'auto',
+							}}
+						>
 							{searchResults.map((item) => {
 								return (
 									<div className="text-white col-span-1">

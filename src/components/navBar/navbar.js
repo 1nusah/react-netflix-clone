@@ -8,7 +8,7 @@ const Navbar = () => {
 	const navBar = 'navBar';
 	return (
 		// <div className="navBar">
-		<div className={`flex justify-between  ${navBar}`}>
+		<div className={`flex justify-between bg-black bg-opacity-30  ${navBar}`}>
 			<div className="flex space-x-3 justify-center">
 				<div className="w-20 h-10 ">
 					<Link to="/">

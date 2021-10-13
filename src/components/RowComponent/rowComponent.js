@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import movieTrailer from 'movie-trailer';
 
 import axios from '../axios/axios';
-import { FaveMovielistContext } from '../../context/movieListContext';
 
 import Popover from '../popover';
 
@@ -44,11 +43,8 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 		}
 	};
 
-	const { favemovieList, addFaveMovie, removeMovie } =
-		useContext(FaveMovielistContext);
-
 	return (
-		<div>
+		<div className="z-50">
 			<div>
 				<p className="text-gray-50 text-2xl font-semibold"> {title} </p>
 			</div>
