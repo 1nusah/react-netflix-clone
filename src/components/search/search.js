@@ -63,7 +63,16 @@ const SearchComponent = () => {
 							Search Results for {queryTerm} :
 						</p>
 
-						<div className="grid grid-cols-5  gap-2 ">
+						<div
+							style={{
+								display: 'grid',
+								gap: '2%',
+								gridTemplateColumns: 'repeat(auto-fill,minmax(160px,1fr))',
+								gridAutoFlow: 'row',
+								gridAutoColumns: 'minmax(160px,1fr',
+								// overflowX: 'auto',
+							}}
+						>
 							{searchResults.map((item) => {
 								return (
 									<div className="text-white col-span-1">
