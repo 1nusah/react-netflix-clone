@@ -49,15 +49,15 @@ const MovieView = () => {
 				backgroundSize: 'cover',
 				backgroundImage: `url("https://image.tmdb.org/t/p/original/${location.state?.backdrop_path}")`,
 				backgroundPosition: 'center center',
-				height: '100%',
+				// height: '100%',
 			}}
-			className="backdrop-filter backdrop-invert"
+			className="backdrop-filter backdrop-invert lg:h-screen sm:h-full "
 		>
 			<div className="pb-10 ">
 				<Navbar />
 			</div>
 
-			<div className=" lg:pl-4 lg:space-x-3 lg:flex sm:flex-row  pt-12 ">
+			<div className=" lg:pl-4 lg:space-x-3 lg:flex sm:flex-row  pt-11 ">
 				<div className=" lg:w-1/5 lg:h-1/5 sm:w-3/5 sm:h-auto">
 					<img
 						src={`https://image.tmdb.org/t/p/original/${location.state?.poster_path}`}
