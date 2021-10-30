@@ -53,11 +53,11 @@ const MovieView = () => {
 			}}
 			className="backdrop-filter backdrop-invert"
 		>
-			<div className="pb-10">
+			<div className="pb-10 ">
 				<Navbar />
 			</div>
 
-			<div className=" lg:pl-4 lg:space-x-3 lg:flex sm:flex-row  pt-10 ">
+			<div className=" lg:pl-4 lg:space-x-3 lg:flex sm:flex-row  pt-12 ">
 				<div className=" lg:w-1/5 lg:h-1/5 sm:w-3/5 sm:h-auto">
 					<img
 						src={`https://image.tmdb.org/t/p/original/${location.state?.poster_path}`}
