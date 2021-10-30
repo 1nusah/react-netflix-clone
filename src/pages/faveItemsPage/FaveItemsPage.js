@@ -55,27 +55,24 @@ export default function FaveItemsPage() {
 			{favemovieList.length > 0 ? (
 				favemovieList.map((item) => {
 					return (
-						<div className="md:flex space-x-5 p-6 sm:grid sm:grid-rows-auto">
-							<div
-								style={{
-									height: '40vh',
-									// backgroundColor: '#f00',
-								}}
-							>
+						<div className="lg:flex sm:flex-row space-x-5 p-6 ">
+							<div style={{ height: '40vh' }} className="">
 								<img
 									src={`${baseImageUrl}${item.poster_path}`}
 									alt={item?.title}
-									className="object-contain sm:object-fill w-full h-full"
+									className="lg:object-contain  w-full h-full"
 								/>
 							</div>
 
-							<div className="flex flex-col justify-center sm:items-center lg:items-start  w-full ">
-								<p className="text-xl font-semibold">{item.title}</p>
+							<div className="flex flex-col justify-center w-full">
+								<p className="text-xl font-semibold sm:py-4 lg:py-auto">
+									{item.title}
+								</p>
 								<p className="info text-base  hidden lg:block">
 									{item?.overview}
 								</p>
 
-								<div className="flex space-x-4 pt-2 ">
+								<div className="flex space-x-4 py-2 ">
 									<IconButton
 										style={{ border: '1px solid #9CA3AF' }}
 										onClick={() => handleClick(item)}
