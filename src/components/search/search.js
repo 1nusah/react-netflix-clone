@@ -20,7 +20,6 @@ const useStyles = makeStyles({
 const SearchComponent = () => {
 	const [queryTerm, setQueryTerm] = React.useState('');
 	const [searchResults, setSearchResults] = React.useState([]);
-	const classes = useStyles();
 	const handleQueryTerm = (e) => {
 		setQueryTerm(e.target.value);
 	};
@@ -33,7 +32,7 @@ const SearchComponent = () => {
 			console.log('search results', req.data.results);
 		}
 		getData();
-	}, [queryTerm]);
+	}, [searchQuery]);
 	const baseImageUrl = 'https://image.tmdb.org/t/p/original/';
 	const history = useHistory();
 	return (
