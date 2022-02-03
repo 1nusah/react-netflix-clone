@@ -10,11 +10,17 @@ const RowComponent = ({ title, fetchUrl, largeRow }) => {
 	const [trailerUrl, setTrailerUrl] = useState('');
 	const [selectedMovie, setSelectedMovie] = useState({});
 	useEffect(() => {
+		let isMounted = true;
 		async function getData() {
 			const req = await axios.get(fetchUrl);
 			setMovieItem(req.data.results);
 		}
-		getData();
+		if (isMounted) {
+			getData();
+		}
+		return () => {
+			isMounted = false;
+		};
 	}, [fetchUrl]);
 
 	const baseImageUrl = 'https://image.tmdb.org/t/p/original/';
